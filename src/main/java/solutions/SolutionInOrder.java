@@ -1,4 +1,9 @@
-public class SolutionInOrder {
+package solutions;
+
+import model.Node;
+import utils.Console;
+
+public class SolutionInOrder implements Solution {
 
     private final Console console;
 
@@ -6,6 +11,7 @@ public class SolutionInOrder {
         this.console = console;
     }
 
+    @Override
     public boolean search(Node tree, String searchTerm) {
         return recursiveSearch(tree, searchTerm);
     }
