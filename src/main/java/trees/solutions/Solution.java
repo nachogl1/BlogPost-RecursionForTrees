@@ -1,6 +1,6 @@
-package solutions;
+package trees.solutions;
 
-import model.Node;
+import trees.model.Node;
 
 public interface Solution {
     boolean search(Node tree, String searchTerm);

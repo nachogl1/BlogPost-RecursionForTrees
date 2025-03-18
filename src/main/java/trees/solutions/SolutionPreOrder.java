@@ -1,7 +1,7 @@
-package solutions;
+package trees.solutions;
 
-import model.Node;
-import utils.Console;
+import trees.model.Node;
+import trees.utils.Console;
 
 public class SolutionPreOrder implements Solution {
     private final Console console;

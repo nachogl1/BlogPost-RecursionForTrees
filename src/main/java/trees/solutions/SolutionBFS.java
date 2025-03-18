@@ -1,7 +1,7 @@
-package solutions;
+package trees.solutions;
 
-import model.Node;
-import utils.Console;
+import trees.model.Node;
+import trees.utils.Console;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

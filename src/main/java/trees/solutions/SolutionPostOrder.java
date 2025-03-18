@@ -1,13 +1,12 @@
-package solutions;
+package trees.solutions;
 
-import model.Node;
-import utils.Console;
+import trees.model.Node;
+import trees.utils.Console;
 
-public class SolutionInOrder implements Solution {
-
+public class SolutionPostOrder implements Solution {
     private final Console console;
 
-    public SolutionInOrder(Console console) {
+    public SolutionPostOrder(Console console) {
         this.console = console;
     }
 
@@ -24,12 +23,17 @@ public class SolutionInOrder implements Solution {
                 result = recursiveSearch(node.getLeft(), searchTerm);
             }
 
+            if (node.getRight() != null) { //As long as I do not have the non-visited far left node, keep going
+                result = result || recursiveSearch(node.getRight(), searchTerm);
+            }
+
             console.print(node.getValue());
+
             if (searchTerm.equals(node.getValue())) {
                 result = true; //If found, return true
             }
 
-            return result || recursiveSearch(node.getRight(), searchTerm); // result is found OR try right side now
+            return result ;
         }
 
         return false; //No luck today kid

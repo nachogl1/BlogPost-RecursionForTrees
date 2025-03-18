@@ -1,4 +1,4 @@
-package solutions;
+package trees.solutions;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,14 +6,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import utils.Console;
+import trees.utils.Console;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.inOrder;
-import static solutions.Utils.TREE;
+import static trees.solutions.Utils.TREE;
 
-public class PreDFSNoRecursiveTests {
+public class DFSInOrderTests {
     private Console console;
     private Solution solution;
 
@@ -21,7 +21,7 @@ public class PreDFSNoRecursiveTests {
     @BeforeEach
     void setUp() {
         console = Mockito.mock(Console.class);
-        solution = new SolutionNoRecursiveDFS(console);
+        solution = new SolutionInOrder(console);
 
     }
 
@@ -30,6 +30,18 @@ public class PreDFSNoRecursiveTests {
     void givenAExistingSearchTerm_WhenUsingInOrderDFS_ThenReturnTrue(String input) {
         boolean result = solution.search(TREE, input);
         assertTrue(result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"m", "invalidValue"})
+    void givenASearchTermThatDoesNotExist_WhenUsingInOrderDFS_ThenReturnIfExistsInCorrectOrder(String input) {
+        InOrder inOrder = inOrder(console);
+
+        boolean result = solution.search(TREE, input);
+
+        assertTraverseInCorrectInOrder(inOrder);
+        inOrder.verify(console).print("7"); // this is specific for this case
+        assertFalse(result);
     }
 
     @Test
@@ -42,27 +54,15 @@ public class PreDFSNoRecursiveTests {
         assertTrue(result);
     }
 
-    @ParameterizedTest
-    @CsvSource({"m", "invalidValue"})
-    void givenASearchTermThatDoesNotExist_WhenUsingInOrderDFS_ThenReturnIfExistsInCorrectOrder(String input) {
-        InOrder inOrder = inOrder(console);
-
-        boolean result = solution.search(TREE, input);
-
-        assertTraverseInCorrectInOrder(inOrder);
-        inOrder.verify(console).print("7"); //Specific for this case
-        assertFalse(result);
-    }
-
 
     private void assertTraverseInCorrectInOrder(InOrder inOrder) {
-        inOrder.verify(console).print("1");
-        inOrder.verify(console).print("2");
         inOrder.verify(console).print("4");
         inOrder.verify(console).print("8");
+        inOrder.verify(console).print("2");
         inOrder.verify(console).print("5");
-        inOrder.verify(console).print("3");
-        inOrder.verify(console).print("6");
+        inOrder.verify(console).print("1");
         inOrder.verify(console).print("9");
+        inOrder.verify(console).print("6");
+        inOrder.verify(console).print("3");
     }
 }

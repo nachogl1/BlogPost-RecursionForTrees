@@ -1,4 +1,4 @@
-package solutions;
+package trees.solutions;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,12 +6,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import utils.Console;
+import trees.utils.Console;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.inOrder;
-import static solutions.Utils.TREE;
+import static trees.solutions.Utils.TREE;
 
 public class BFSTests {
     private Console console;

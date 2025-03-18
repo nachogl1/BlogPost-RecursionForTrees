@@ -1,6 +1,6 @@
-package solutions;
+package trees.solutions;
 
-import model.Node;
+import trees.model.Node;
 
 public class Utils {
     public final static Node TREE = Node.builder()

@@ -1,4 +1,4 @@
-package solutions;
+package trees.solutions;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,14 +6,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import utils.Console;
+import trees.utils.Console;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.inOrder;
-import static solutions.Utils.TREE;
+import static trees.solutions.Utils.TREE;
 
-public class DFSPostOrderTests {
+public class DFSPreOrderTests {
     private Console console;
     private Solution solution;
 
@@ -21,7 +21,7 @@ public class DFSPostOrderTests {
     @BeforeEach
     void setUp() {
         console = Mockito.mock(Console.class);
-        solution = new SolutionPostOrder(console);
+        solution = new SolutionPreOrder(console);
 
     }
 
@@ -55,14 +55,14 @@ public class DFSPostOrderTests {
 
 
     private void assertTraverseInCorrectInOrder(InOrder inOrder) {
-        inOrder.verify(console).print("8");
-        inOrder.verify(console).print("4");
-        inOrder.verify(console).print("5");
-        inOrder.verify(console).print("2");
-        inOrder.verify(console).print("9");
-        inOrder.verify(console).print("6");
-        inOrder.verify(console).print("7");
-        inOrder.verify(console).print("3");
         inOrder.verify(console).print("1");
+        inOrder.verify(console).print("2");
+        inOrder.verify(console).print("4");
+        inOrder.verify(console).print("8");
+        inOrder.verify(console).print("5");
+        inOrder.verify(console).print("3");
+        inOrder.verify(console).print("6");
+        inOrder.verify(console).print("9");
+        inOrder.verify(console).print("7");
     }
 }
