@@ -1,6 +1,5 @@
 package solutions;
 
-import model.Node;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,12 +11,12 @@ import utils.Console;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.inOrder;
+import static solutions.Utils.TREE;
 
-public class DFSNoRecursiveTests {
+public class PreDFSNoRecursiveTests {
     private Console console;
     private Solution solution;
 
-    private final Node tree = new Node(new Node(new Node("4"), new Node("5"), "2"), new Node(new Node("6"), new Node("7"), "3"), "1");
 
     @BeforeEach
     void setUp() {
@@ -27,9 +26,9 @@ public class DFSNoRecursiveTests {
     }
 
     @ParameterizedTest
-    @CsvSource({"1", "2", "3", "4", "5", "6", "7"})
+    @CsvSource({"1", "2", "3", "4", "5", "6", "7", "8", "9"})
     void givenAExistingSearchTerm_WhenUsingInOrderDFS_ThenReturnTrue(String input) {
-        boolean result = solution.search(tree, input);
+        boolean result = solution.search(TREE, input);
         assertTrue(result);
     }
 
@@ -37,7 +36,7 @@ public class DFSNoRecursiveTests {
     void givenAExistingSearchTerm_WhenUsingInOrderDFS_ThenReturnIfExistsTraversingInCorrectOrder() {
         InOrder inOrder = inOrder(console);
 
-        boolean result = solution.search(tree, "7");
+        boolean result = solution.search(TREE, "9");
 
         assertTraverseInCorrectInOrder(inOrder);
         assertTrue(result);
@@ -48,9 +47,10 @@ public class DFSNoRecursiveTests {
     void givenASearchTermThatDoesNotExist_WhenUsingInOrderDFS_ThenReturnIfExistsInCorrectOrder(String input) {
         InOrder inOrder = inOrder(console);
 
-        boolean result = solution.search(tree, input);
+        boolean result = solution.search(TREE, input);
 
         assertTraverseInCorrectInOrder(inOrder);
+        inOrder.verify(console).print("7"); //Specific for this case
         assertFalse(result);
     }
 
@@ -59,9 +59,10 @@ public class DFSNoRecursiveTests {
         inOrder.verify(console).print("1");
         inOrder.verify(console).print("2");
         inOrder.verify(console).print("4");
+        inOrder.verify(console).print("8");
         inOrder.verify(console).print("5");
         inOrder.verify(console).print("3");
         inOrder.verify(console).print("6");
-        inOrder.verify(console).print("7");
+        inOrder.verify(console).print("9");
     }
 }

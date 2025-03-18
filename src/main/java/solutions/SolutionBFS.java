@@ -20,6 +20,7 @@ public class SolutionBFS implements Solution {
 
     private boolean recursiveSearch(Node node, String searchTerm) {
         //Due to the nature of BFS (Queues) using recursion (STACK) is not the best option
+        if(node == null) return false;
 
         Queue<Node> queue = new ArrayDeque<>();
         queue.add(node);
