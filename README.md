@@ -1,1 +1,3 @@
-Repository that complements article
+Repository that complements article.
+
+The code leverages Mockito.
